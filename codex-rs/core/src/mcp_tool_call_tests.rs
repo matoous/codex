@@ -33,13 +33,17 @@ fn annotations(
     destructive: Option<bool>,
     open_world: Option<bool>,
 ) -> ToolAnnotations {
-    ToolAnnotations {
-        destructive_hint: destructive,
-        idempotent_hint: None,
-        open_world_hint: open_world,
-        read_only_hint: read_only,
-        title: None,
+    let mut annotations = ToolAnnotations::new();
+    if let Some(read_only) = read_only {
+        annotations = annotations.read_only(read_only);
     }
+    if let Some(destructive) = destructive {
+        annotations = annotations.destructive(destructive);
+    }
+    if let Some(open_world) = open_world {
+        annotations = annotations.open_world(open_world);
+    }
+    annotations
 }
 
 fn approval_metadata(

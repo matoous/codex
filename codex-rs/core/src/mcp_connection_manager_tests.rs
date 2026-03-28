@@ -15,17 +15,11 @@ fn create_test_tool(server_name: &str, tool_name: &str) -> ToolInfo {
         } else {
             server_name.to_string()
         },
-        tool: Tool {
-            name: tool_name.to_string().into(),
-            title: None,
-            description: Some(format!("Test tool: {tool_name}").into()),
-            input_schema: Arc::new(JsonObject::default()),
-            output_schema: None,
-            annotations: None,
-            execution: None,
-            icons: None,
-            meta: None,
-        },
+        tool: Tool::new(
+            tool_name.to_string(),
+            format!("Test tool: {tool_name}"),
+            Arc::new(JsonObject::default()),
+        ),
         connector_id: None,
         connector_name: None,
         plugin_display_names: Vec::new(),
