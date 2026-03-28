@@ -19,7 +19,10 @@ fn serialize_tool_search_output_tools_groups_results_by_namespace() {
                 tool: Tool::new(
                     "calendar-create-event".to_string(),
                     "Create a calendar event.",
-                    Arc::new(JsonObject::from_iter([("type".to_string(), json!("object"))])),
+                    Arc::new(JsonObject::from_iter([(
+                        "type".to_string(),
+                        json!("object"),
+                    )])),
                 ),
                 connector_id: Some("calendar".to_string()),
                 connector_name: Some("Calendar".to_string()),
@@ -36,7 +39,10 @@ fn serialize_tool_search_output_tools_groups_results_by_namespace() {
                 tool: Tool::new(
                     "gmail-read-email".to_string(),
                     "Read an email.",
-                    Arc::new(JsonObject::from_iter([("type".to_string(), json!("object"))])),
+                    Arc::new(JsonObject::from_iter([(
+                        "type".to_string(),
+                        json!("object"),
+                    )])),
                 ),
                 connector_id: Some("gmail".to_string()),
                 connector_name: Some("Gmail".to_string()),
@@ -53,7 +59,10 @@ fn serialize_tool_search_output_tools_groups_results_by_namespace() {
                 tool: Tool::new(
                     "calendar-list-events".to_string(),
                     "List calendar events.",
-                    Arc::new(JsonObject::from_iter([("type".to_string(), json!("object"))])),
+                    Arc::new(JsonObject::from_iter([(
+                        "type".to_string(),
+                        json!("object"),
+                    )])),
                 ),
                 connector_id: Some("calendar".to_string()),
                 connector_name: Some("Calendar".to_string()),
@@ -130,7 +139,10 @@ fn serialize_tool_search_output_tools_falls_back_to_connector_name_description()
             tool: Tool::new(
                 "gmail-batch-read-email".to_string(),
                 "Read multiple emails.",
-                Arc::new(JsonObject::from_iter([("type".to_string(), json!("object"))])),
+                Arc::new(JsonObject::from_iter([(
+                    "type".to_string(),
+                    json!("object"),
+                )])),
             ),
             connector_id: Some("connector_gmail_456".to_string()),
             connector_name: Some("Gmail".to_string()),
