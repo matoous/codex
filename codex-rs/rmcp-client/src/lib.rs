@@ -1,4 +1,5 @@
 mod auth_status;
+mod http_client;
 mod logging_client_handler;
 mod oauth;
 mod perform_oauth_login;

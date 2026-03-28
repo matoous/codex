@@ -7,7 +7,6 @@ use anyhow::Context;
 use anyhow::Result;
 use anyhow::anyhow;
 use anyhow::bail;
-use reqwest::ClientBuilder;
 use reqwest::Url;
 use rmcp::transport::auth::OAuthState;
 use tiny_http::Response;
@@ -19,9 +18,9 @@ use urlencoding::decode;
 use crate::OAuthCredentialsStoreMode;
 use crate::StoredOAuthTokens;
 use crate::WrappedOAuthTokenResponse;
+use crate::http_client::build_http_client;
 use crate::oauth::compute_expires_at_millis;
 use crate::save_oauth_tokens;
-use crate::utils::apply_default_headers;
 use crate::utils::build_default_headers;
 
 struct OauthHeaders {
@@ -438,7 +437,11 @@ impl OauthLoginFlow {
             env_http_headers,
         } = headers;
         let default_headers = build_default_headers(http_headers, env_http_headers)?;
-        let http_client = apply_default_headers(ClientBuilder::new(), &default_headers).build()?;
+        let http_client = build_http_client(
+            Some(&default_headers),
+            /*no_proxy*/ false,
+            /*timeout*/ None,
+        )?;
 
         let mut oauth_state = OAuthState::new(server_url, Some(http_client)).await?;
         let scope_refs: Vec<&str> = scopes.iter().map(String::as_str).collect();
